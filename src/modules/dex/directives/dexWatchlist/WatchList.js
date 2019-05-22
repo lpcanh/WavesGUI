@@ -2,7 +2,7 @@
     'use strict';
 
 
-    const DROP_DOWN_ORDER_LIST = ['ETH', 'BCH', 'LTC', 'USD', 'EUR', 'BSV'];
+    const DROP_DOWN_ORDER_LIST = ['BTC', 'ETH', 'BCH', 'LTC', 'USD', 'EUR', 'BSV'];
     const DROP_DOWN_LIST = [];
 
     DROP_DOWN_ORDER_LIST.forEach((name) => {
@@ -71,8 +71,10 @@
              */
             tabs = [
                 { name: 'directives.watchlist.all', value: 'all' },
-                { name: 'WAVES', value: WavesApp.defaultAssets.WAVES },
-                { name: 'BTC', value: WavesApp.defaultAssets.BTC }
+                { name: 'MXT', value: WavesApp.defaultAssets.MXT },
+                { name: 'CLB', value: WavesApp.defaultAssets.CLB },
+                { name: 'WAVES', value: WavesApp.defaultAssets.WAVES }
+                /* ,{ name: 'BTC', value: WavesApp.defaultAssets.BTC } */
             ];
             /**
              * @type {string}

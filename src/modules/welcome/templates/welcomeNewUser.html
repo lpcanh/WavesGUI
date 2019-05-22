@@ -1,8 +1,26 @@
 <div class="new-user">
+    <div class="center">
+        <div class="" style="margin: 40px auto 40px auto;">
+            <img src="/img/header/logo_clb_n_mondex.png" title="Header Logo" alt="Header Logo"/>
+        </div>
+        <w-carousel class="margin-4" interval="4000" id="bannerSlider" style="max-width: 640px;height: 240px">
+            <div class="slide">
+                <a href="https://play.google.com/store/apps/details?id=com.lnc.mondexphone" target="_blank">
+                    <img src="/img/banner/banner2.png" title="header1" alt=""></a>
+            </div>
+            <div class="slide">
+                <a href="https://play.google.com/store/apps/details?id=com.tworld.softphone" target="_blank">
+                    <img src="/img/banner/banner1.png" title="header2" alt=""></a>
+            </div>
+            <div class="slide">
+                <a href="https://tworld101.com" target="_blank">
+                    <img src="/img/banner/banner3.png" title="header3" alt=""></a>
+            </div>
+        </w-carousel>
+        <w-carousel-dots class="square" slider-id="bannerSlider"></w-carousel-dots>
+    </div>
 
-    <a class="waves-logo" ui-sref="welcome"></a>
-
-    <w-carousel class="margin-4" interval="7000">
+    <!--w-carousel class="margin-4" interval="7000">
         <div class="slide">
             <div class="slide-icon-0"></div>
             <h2 class="slide-title headline-1">
@@ -41,7 +59,7 @@
         </div>
     </w-carousel>
 
-    <w-carousel-dots class="square"></w-carousel-dots>
+    <w-carousel-dots class="square"></w-carousel-dots-->
 
     <w-analytics event="'Onboarding Get Started Click'"
                  event-target="'ui'">

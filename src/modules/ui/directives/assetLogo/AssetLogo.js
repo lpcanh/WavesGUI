@@ -4,6 +4,8 @@
     // TODO @xenohunter : remove that when icons are in @dvshur's service
     const ASSET_IMAGES_MAP = {
         [WavesApp.defaultAssets.WAVES]: '/img/assets/waves.svg',
+        [WavesApp.defaultAssets.MXT]: '/img/assets/mxt.png',
+        [WavesApp.defaultAssets.CLB]: '/img/assets/clbcoin.svg',
         [WavesApp.defaultAssets.BTC]: '/img/assets/bitcoin.svg',
         [WavesApp.defaultAssets.ETH]: '/img/assets/ethereum.svg',
         [WavesApp.defaultAssets.LTC]: '/img/assets/ltc.svg',

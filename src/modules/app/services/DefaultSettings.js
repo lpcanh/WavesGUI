@@ -50,9 +50,12 @@
                     },
                     orderLimit: 0.05,
                     pinnedAssetIdList: [
+                        WavesApp.defaultAssets.CLB,
+                        WavesApp.defaultAssets.MXT,
                         WavesApp.defaultAssets.WAVES,
                         WavesApp.defaultAssets.BTC,
-                        WavesApp.defaultAssets.ETH,
+                        WavesApp.defaultAssets.ETH
+                        /* ,
                         WavesApp.defaultAssets.USD,
                         WavesApp.defaultAssets.EUR,
                         WavesApp.defaultAssets.LTC,
@@ -61,7 +64,7 @@
                         WavesApp.defaultAssets.BSV,
                         WavesApp.defaultAssets.TRY,
                         WavesApp.defaultAssets.DASH,
-                        WavesApp.defaultAssets.XMR
+                        WavesApp.defaultAssets.XMR*/
                     ],
                     wallet: {
                         activeState: 'assets',
