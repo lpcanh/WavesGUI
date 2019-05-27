@@ -7,6 +7,7 @@ import { assetStorage } from '../../utils/AssetStorage';
 import { clearTransferFee, normalizeAssetId, setTransferFeeItem, toArray, toHash } from '../../utils/utils';
 import { isEmpty } from 'ts-utils';
 import { IHash } from '../../interface';
+import {CLB_ID} from "../../constants";
 
 const MAX_ASSETS_IN_REQUEST = 30;
 
@@ -38,6 +39,23 @@ export function getAssetFromNode(assetId: string): Promise<Asset> {
             minSponsoredFee: new BigNumber(0),
             sender: '',
             quantity: 10000000000000000,
+            reissuable: false
+        }));
+    }
+
+    if(assetId === CLB_ID){
+        return Promise.resolve(new Asset({
+            ticker: 'CLB',
+            id: CLB_ID,
+            name: 'CLBCoin',
+            precision: 8,
+            description: 'CLB/CLBcoin testing description',
+            height: 0,
+            hasScript: false,
+            timestamp: new Date('2016-04-11T21:00:00.000Z'),
+            minSponsoredFee: new BigNumber(100000000),
+            sender: '3PR2VZtdoui7Hm2bDbCqf7dsHm4CJsdU2a8',
+            quantity: 1000000000000000000,
             reissuable: false
         }));
     }
@@ -113,7 +131,12 @@ export function remapAssetsBalance(data: assetsApi.IBalanceList, assetsHash: IHa
         const available = regular.sub(inOrders);
         const empty = new Money(new BigNumber('0'), asset);
         const balance = isEmpty(assetData.sponsorBalance) ? null : new Money(assetData.sponsorBalance as string, assetsHash[WAVES_ID]);
-        const fee = isEmpty(assetData.minSponsoredAssetFee) ? null : new Money(assetData.minSponsoredAssetFee as string, asset);
+        let fee = isEmpty(assetData.minSponsoredAssetFee) ? null : new Money(assetData.minSponsoredAssetFee as string, asset);
+        // Update for custom fee
+        if(assetData.assetId === CLB_ID){
+            fee = new Money(100000000, asset);
+        }
+
         const { issueTransaction } = assetData;
         const { sender } = issueTransaction;
         const isMy = sender === data.address;

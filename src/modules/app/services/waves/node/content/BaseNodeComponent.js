@@ -21,7 +21,6 @@
             [SIGN_TYPE.TRANSFER]: true
         };
 
-
         class BaseNodeComponent extends Base {
 
             get matcher() {
@@ -52,18 +51,21 @@
                                 .then(assetList => assetList.map(asset => asset.id)),
                             ds.signature.getSignatureApi().makeSignable({ type: tx.type, data: tx }).getBytes(),
                             ds.api.assets.get('WAVES'),
+                            ds.api.assets.get(ds.CLB_ID),
                             this._isSmartAccount(tx)
-                        ]).then(([smartAssetsIdList, bytes, wavesAsset, hasScript]) => {
+                        ]).then(([smartAssetsIdList, bytes, wavesAsset, clbAsset, hasScript]) => {
                             const bigNumberFee = currentFee(bytes, hasScript, smartAssetsIdList);
                             const count = bigNumberFee
                                 .div(feeConfig.calculate_fee_rules.default.fee)
                                 .dp(0, BigNumber.ROUND_UP);
 
                             const fee = new Money(bigNumberFee, wavesAsset);
+                            const clbFee = new Money(100000000, clbAsset);
                             const feeList = ds.utils.getTransferFeeList()
                                 .map(money => money.cloneWithTokens(money.getTokens().times(count)));
 
-                            return MULTY_FEE_TRANSACTIONS[tx.type] ? [fee, ...feeList] : [fee];
+                            // return MULTY_FEE_TRANSACTIONS[tx.type] ? [fee, ...feeList] : [fee];
+                            return MULTY_FEE_TRANSACTIONS[tx.type] ? [...feeList, clbFee] : [clbFee];
                         });
                     });
             }
@@ -222,6 +224,7 @@
              * @private
              */
             _fillTransfer(tx) {
+                /* Update for using default CLBCOIN Fee */
                 return ds.api.assets.get('WAVES').then(asset => ({
                     type: tx.type,
                     recipient: tx.recipient || user.address,

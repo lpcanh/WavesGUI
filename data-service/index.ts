@@ -22,7 +22,7 @@ export { getAdapterByType, getAvailableList } from '@waves/signature-adapter';
 export { Seed } from './classes/Seed';
 export { assetStorage } from './utils/AssetStorage';
 export * from './store';
-
+export * from './constants';
 export const wavesDataEntities = {
     ...wavesDataEntitiesModule
 };

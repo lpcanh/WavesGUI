@@ -8,7 +8,10 @@
      * @param {$rootScope.Scope} $scope
      */
     const controller = function (Base, waves, $scope, user) {
-
+        console.log(Base);
+        console.log(waves);
+        console.log(user);
+        console.log($scope);
         class FeeList extends Base {
 
             /**
@@ -110,15 +113,17 @@
                 }
 
                 const wavesFee = list.find(item => item.asset.id === 'WAVES');
+                const clbFee = list.find(item => item.asset.id === 'CfMBo6GAZZhXs3bbS64NwAor24CuXwYVGJ34SSkPKHVf');
                 const filteredList = list.filter(fee => {
                     const feeBalance = this.balanceHash[fee.asset.id];
                     const canUseOwnFee = user.address !== fee.asset.sender || this.balanceHash.WAVES.gte(wavesFee);
                     return hasBalances && feeBalance && feeBalance.gte(fee) && canUseOwnFee;
                 });
 
-
+                console.log('ClbFee: ' + JSON.stringify(clbFee));
+                console.log('wavesFee: ' + JSON.stringify(wavesFee));
                 if (!filteredList.length) {
-                    filteredList.push(wavesFee);
+                    filteredList.push(clbFee || wavesFee);
                 }
 
                 this.feeList = filteredList;

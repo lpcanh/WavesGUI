@@ -124,7 +124,6 @@
                         ds.moneyFromTokens(options.amount || '0', this.state.assetId),
                         waves.node.getFee({ type: SIGN_TYPE.TRANSFER })
                     ]).then(([money, fee]) => {
-
                         this.state.singleSend.amount = money;
                         this.state.singleSend.fee = fee;
 
