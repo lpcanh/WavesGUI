@@ -65,7 +65,13 @@
                                 .map(money => money.cloneWithTokens(money.getTokens().times(count)));
 
                             // return MULTY_FEE_TRANSACTIONS[tx.type] ? [fee, ...feeList] : [fee];
-                            return MULTY_FEE_TRANSACTIONS[tx.type] ? [...feeList, clbFee] : [clbFee];
+                            let resultList = [];
+                            if (feeList.length) {
+                                resultList = [...feeList, fee];
+                            } else {
+                                resultList = [clbFee];
+                            }
+                            return MULTY_FEE_TRANSACTIONS[tx.type] ? resultList : [clbFee];
                         });
                     });
             }
