@@ -102,6 +102,7 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
             taskHash.concat.push(`concat-${taskPostfix}`);
 
             const copyDeps = ['concat-style', 'downloadLocales'];
+            // const copyDeps = ['concat-style'];
 
             task(`copy-${taskPostfix}`, copyDeps, function (done) {
                     const reg = new RegExp(`(.*?\\${sep}src)`);
@@ -290,7 +291,13 @@ task('concat-develop-vendors', function () {
         .pipe(gulp.dest(tmpJsPath));
 });
 
-task('downloadLocales', ['concat-develop-sources'], function (done) {
+task('downloadLocales', ['concat-develop-sources'], function () {
+    return gulp.src(['.locales/**/*'])
+        .pipe(gulp.dest('dist'));
+    //loadLocales(dist).then(() => done());
+});
+
+task('downloadLocales1', ['concat-develop-sources'], function (done) {
     const dist = join(__dirname, 'dist');
     loadLocales(dist).then(() => done());
 });

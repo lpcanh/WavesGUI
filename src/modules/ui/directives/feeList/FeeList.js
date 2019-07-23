@@ -8,10 +8,11 @@
      * @param {$rootScope.Scope} $scope
      */
     const controller = function (Base, waves, $scope, user) {
+        /*
         console.log(Base);
         console.log(waves);
         console.log(user);
-        console.log($scope);
+        console.log($scope);*/
         class FeeList extends Base {
 
             /**
@@ -120,8 +121,8 @@
                     return hasBalances && feeBalance && feeBalance.gte(fee) && canUseOwnFee;
                 });
 
-                console.log('ClbFee: ' + JSON.stringify(clbFee));
-                console.log('wavesFee: ' + JSON.stringify(wavesFee));
+                // console.log('ClbFee: ' + JSON.stringify(clbFee));
+                // console.log('wavesFee: ' + JSON.stringify(wavesFee));
                 if (!filteredList.length) {
                     filteredList.push(clbFee || wavesFee);
                 }
